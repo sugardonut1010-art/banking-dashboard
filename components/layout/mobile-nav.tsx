@@ -11,16 +11,20 @@ export function MobileNav() {
         <Sheet>
             <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">
-                    <Menu className="h-5 w-5" />
+                    <Menu className="h-6 w-6" /> {/* slightly larger for touch */}
                 </Button>
             </SheetTrigger>
 
-            <SheetContent side="left" className="w-64">
-                <div className="mb-6 text-lg font-bold">
+            <SheetContent
+                side="left"
+                className="w-full max-w-xs md:hidden"
+                position="left"
+            >
+                <div className="mb-6 text-xl font-bold p-4 border-b">
                     MyBank
                 </div>
 
-                <nav className="space-y-2">
+                <nav className="flex flex-col space-y-2 px-4">
                     {navigation.map((item) => {
                         const Icon = item.icon
 
@@ -28,9 +32,9 @@ export function MobileNav() {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-muted"
+                                className="flex items-center gap-3 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted"
                             >
-                                <Icon className="h-4 w-4" />
+                                <Icon className="h-5 w-5" />
                                 {item.name}
                             </Link>
                         )
