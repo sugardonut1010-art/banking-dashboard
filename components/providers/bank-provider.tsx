@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react"
 import { BankState, loadBankState, saveBankState } from "@/lib/store/bank-store"
+import { Transaction, TransactionType } from "@/types/transaction"
 
 interface BankContextValue {
     state: BankState
@@ -31,7 +32,7 @@ export function BankProvider({ children }: { children: React.ReactNode }) {
                 return acc
             })
 
-            const newTransactions = [
+            const newTransactions: Transaction[] = [
                 ...prev.transactions,
                 {
                     id: `txn_${Date.now()}_${Math.random()}`,

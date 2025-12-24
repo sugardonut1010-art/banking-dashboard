@@ -18,7 +18,6 @@ export function MobileNav() {
             <SheetContent
                 side="left"
                 className="w-full max-w-xs md:hidden"
-                position="left"
             >
                 <div className="mb-6 text-xl font-bold p-4 border-b">
                     MyBank
