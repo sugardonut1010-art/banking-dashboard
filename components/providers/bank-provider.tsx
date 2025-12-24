@@ -23,12 +23,13 @@ export function BankProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (session?.user) {
+            const user = session.user
             setState(prev => ({
                 ...prev,
                 user: {
-                    id: (session.user as any).id,
-                    name: session.user.name!,
-                    email: session.user.email!,
+                    id: (user as any).id,
+                    name: user.name!,
+                    email: user.email!,
                 }
             }))
         }
