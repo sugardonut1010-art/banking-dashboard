@@ -9,6 +9,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 export default function TransactionsPage() {
     const { state } = useBank()
 
+    console.log("Transactions state:", state.transactions)
+
     if (state.transactions.length === 0) {
         return (
             <p className="text-muted-foreground">
@@ -94,8 +96,8 @@ export default function TransactionsPage() {
                                     </TableCell>
                                     <TableCell className="font-mono">{getToAccountNumber(txn)}</TableCell>
                                     <TableCell>
-                                        <Badge className={getStatusColor(txn.status)}>
-                                            {txn.status.charAt(0).toUpperCase() + txn.status.slice(1)}
+                                        <Badge className={getStatusColor(txn.status || "completed")}>
+                                            {(txn.status || "completed").charAt(0).toUpperCase() + (txn.status || "completed").slice(1)}
                                         </Badge>
                                     </TableCell>
                                     <TableCell className={`text-right font-semibold ${txn.amount < 0 ? "text-red-600" : "text-green-600"}`}>

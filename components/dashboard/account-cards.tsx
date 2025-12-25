@@ -82,7 +82,7 @@ function AccountTabs({ accounts }: { accounts: any[] }) {
                             <CardContent>
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <div className="text-3xl font-extrabold leading-none">
+                                        <div className="text-3xl font-extrabold leading-none" suppressHydrationWarning>
                                             {formatCurrency(account.balance)}
                                         </div>
                                         <p className="text-sm opacity-90">Available balance</p>

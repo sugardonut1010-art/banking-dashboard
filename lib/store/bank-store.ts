@@ -51,8 +51,9 @@ export function loadBankState(): BankState {
         // cent adjustments so the balances reflect the intended values.
         const needsMigration = parsed.accounts.some(a => Number.isInteger(a.balance))
 
+        let migrated = parsed
         if (needsMigration) {
-            const migrated = {
+            migrated = {
                 ...parsed,
                 accounts: parsed.accounts.map((a) => {
                     if (a.id === "acc_checking") {
@@ -64,13 +65,19 @@ export function loadBankState(): BankState {
                     return a
                 }),
             }
-
-            // Persist migrated state
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
-            return migrated
         }
 
-        return parsed
+        // Ensure transactions are loaded - always include mock transactions if fewer than expected
+        if (!migrated.transactions || migrated.transactions.length < mockTransactions.length) {
+            migrated = {
+                ...migrated,
+                transactions: mockTransactions,
+            }
+        }
+
+        // Persist migrated state
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
+        return migrated
     } catch (e) {
         // If parsing fails, fall back to initial state
         return initialState
