@@ -6,4 +6,5 @@ export interface BankAccount {
     type: AccountType
     balance: number
     currency: "USD"
+    accountNumber: string
 }

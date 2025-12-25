@@ -7,6 +7,7 @@ export const accounts: (BankAccount & { primary?: boolean })[] = [
         type: "checking",
         balance: 4250.75,
         currency: "USD",
+        accountNumber: "1234567890",
         primary: true, // 👈 main account
     },
     {
@@ -15,5 +16,6 @@ export const accounts: (BankAccount & { primary?: boolean })[] = [
         type: "savings",
         balance: 12850.0,
         currency: "USD",
+        accountNumber: "0987654321",
     },
 ]

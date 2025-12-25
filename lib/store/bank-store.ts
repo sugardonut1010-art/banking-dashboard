@@ -1,6 +1,7 @@
 import { BankAccount } from "@/types/account"
 import { Transaction } from "@/types/transaction"
 import { User } from "@/types/user"
+import { transactions as mockTransactions } from "@/lib/mock/transactions"
 
 export interface BankState {
     user: User
@@ -23,6 +24,7 @@ const initialState: BankState = {
             type: "checking",
             balance: 573_222.14,
             currency: "USD",
+            accountNumber: "****1234"
         },
         {
             id: "acc_savings",
@@ -30,9 +32,10 @@ const initialState: BankState = {
             type: "savings",
             balance: 822_500.5,
             currency: "USD",
+            accountNumber: "****5678"
         },
     ],
-    transactions: [],
+    transactions: mockTransactions,
 }
 
 export function loadBankState(): BankState {

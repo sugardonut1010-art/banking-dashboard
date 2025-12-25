@@ -9,7 +9,9 @@ import { formatCurrency } from "@/lib/format"
 
 export function TransactionsSummary() {
     const { state } = useBank()
-    const recentTransactions = state.transactions.slice(0, 5)
+    const recentTransactions = state.transactions
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+        .slice(0, 5)
 
     function getTransactionColor(type: string) {
         switch (type) {
@@ -52,7 +54,7 @@ export function TransactionsSummary() {
                         <div key={txn.id} className="flex items-center justify-between p-3 border rounded-lg">
                             <div className="flex-1">
                                 <p className="font-medium text-sm">{txn.description}</p>
-                                <p className="text-xs text-muted-foreground">{txn.date}</p>
+                                <p className="text-xs text-muted-foreground">{new Date(txn.timestamp).toLocaleDateString()}</p>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Badge className={getTransactionColor(txn.type)}>

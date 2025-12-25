@@ -75,19 +75,23 @@ export function BankProvider({ children }: { children: React.ReactNode }) {
                 ...prev.transactions,
                 {
                     id: `txn_${Date.now()}_${Math.random()}`,
-                    date: new Date().toISOString().split('T')[0],
+                    timestamp: new Date().toISOString(),
                     description: `Transfer to ${to.name}`,
                     amount: -amount,
                     type: "transfer",
-                    accountId: fromId
+                    accountId: fromId,
+                    toAccountId: toId,
+                    status: "completed"
                 },
                 {
                     id: `txn_${Date.now()}_${Math.random() + 1}`,
-                    date: new Date().toISOString().split('T')[0],
+                    timestamp: new Date().toISOString(),
                     description: `Transfer from ${from.name}`,
                     amount: amount,
                     type: "transfer",
-                    accountId: toId
+                    accountId: toId,
+                    toAccountId: fromId,
+                    status: "completed"
                 }
             ]
 

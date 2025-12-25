@@ -102,7 +102,7 @@ export function TransactionsTable() {
                 <TableBody>
                     {filtered.map((txn) => (
                         <TableRow key={txn.id}>
-                            <TableCell>{txn.date}</TableCell>
+                            <TableCell>{new Date(txn.timestamp).toLocaleDateString()}</TableCell>
                             <TableCell>{txn.description}</TableCell>
                             <TableCell>{typeBadge(txn.type)}</TableCell>
                             <TableCell
